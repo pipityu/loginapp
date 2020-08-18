@@ -1,0 +1,28 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="#">Login-App</a>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+
+      <li class="nav-item active"><a class="nav-link" routerLinkActive="active" routerLink="/">Főoldal</a></li>
+
+      <div *ngIf="app.localStorageItem('loggedIn') === 'true'">
+        <li class="nav-item active"><a class="nav-link" routerLinkActive="active" routerLink="/user/profile">Profil</a></li>
+      </div>
+      <div *ngIf="app.localStorageItem('role') ==='ROLE_ADMIN' && app.localStorageItem('loggedIn') === 'true'">
+        <li class="nav-item active"><a class="nav-link" routerLinkActive="active" routerLink="/user/admin/userlist">Felhasználók</a></li>
+      </div>
+      
+      
+      <div *ngIf="app.localStorageItem('loggedIn') === 'true'; else elseBlock">
+        <li class="nav-item"><a class="nav-link" (click)="this.authenticationService.logout()">Kijelentkezés</a></li>
+      </div>
+      <ng-template #elseBlock>
+        <li class="nav-item active"><a class="nav-link" routerLinkActive="active" routerLink="/login">Bejelentkezés</a></li>
+      </ng-template>
+    </ul>
+  </div>
+</nav>
+

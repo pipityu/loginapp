@@ -1,0 +1,9 @@
+.card{
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.successUpdate{
+    color: darkgreen;
+    font-weight: bold;
+}

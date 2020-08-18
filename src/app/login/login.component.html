@@ -1,0 +1,15 @@
+<div id="mainText">Jelentkezz be</div>
+
+<div class="login">
+	<form ngNativeValidate (submit)="this.authenticationService.login()">
+		<div class="form-group">
+			<label for="username">Felhasználónév:</label> <input required type="text"
+				class="form-control" id="username" name="username" [(ngModel)]="this.authenticationService.credentials.username"/>
+		</div>
+		<div class="form-group">
+			<label for="password">Jelszó:</label> <input required type="password"
+				class="form-control" id="password" name="password" [(ngModel)]="this.authenticationService.credentials.password"/>
+		</div>
+		<button type="submit" class="btn btn-success">Bejelentkezés</button>	
+	</form>
+</div>

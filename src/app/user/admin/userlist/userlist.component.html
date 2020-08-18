@@ -1,0 +1,114 @@
+<div class="usersTop">
+    <h3>Felhasználók</h3>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newUserModal">Új felhasználó+</button>
+</div>
+<div class="users" *ngFor="let user of users">
+    <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Adatok</h5>
+          <p class="card-text">E-mail:{{user.email}}</p>
+          <p class="card-text">Név:{{user.fullName}}</p>
+          <p class="card-text">Telefonszám:{{user.phone}}</p>
+          <button (click)="this.userService.userId = user.id" type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#updateModal">Módosítás</button>
+          <button (click)="this.userService.userId = user.id; deleteUser();" type="button" class="btn btn-danger btn-lg" >Törlés</button>
+        </div>
+      </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="updateModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Adatok módosítása</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form ngNativeValidate name="userUpdate" (submit)="userUpdate()" class="form-group" method="post">
+                <div class="modal-body">
+                        <div class="p-2">
+                            <label for="updateName">Új név</label>
+                            <input type="text" class="form-control" id="updateName" name="updateName" [(ngModel)]="this.userService.updateUserData.updateName"/>
+                        </div>
+                        <div class="p-2">
+                            <label for="updatePhone">Új telefonszám</label>
+                            <input type="text" class="form-control" id="updatePhone" name="updatePhone" [(ngModel)]="this.userService.updateUserData.updatePhone"/>
+                        </div>
+                        <div class="p-2">
+                            <label for="updatePassword">Új jelszó</label>
+                            <input type="password" class="form-control" id="updatePassword" name="updatePassword" [(ngModel)]="this.userService.updateUserData.updatePassword"/>
+                        </div>
+                        <div class="p-2">
+                            <label for="updatePasswordAgain">Új jelszó újra</label>
+                            <input type="password" class="form-control" id="updatePasswordAgain" name="updatePasswordAgain" [(ngModel)]="this.userService.updateUserData.updatePasswordAgain"/>
+                        </div>
+                        <div class="p-2">
+                            <label for="password">Jelenlegi jelszó</label>
+                            <input required type="password" class="form-control" id="password" name="password" [(ngModel)]="this.userService.updateUserData.password" required/>
+                        </div>
+                        <div class="successUpdate" *ngIf="this.successUpdate === 'OK'">Sikeres módosítás</div>
+                        <div *ngFor="let error of errors">
+                            <div class="alert alert-danger">{{error}}</div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" >Küldés</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Mégse</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newUserModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Új felhasználó regisztrálása</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form ngNativeValidate name="newUser" (submit)="newUser()" class="form-group" method="post">
+                <div class="modal-body">
+                        <div class="p-2">
+                            <label for="newName">Név</label>
+                            <input type="text" class="form-control" id="name"  name="name" [(ngModel)]="this.userService.updateUserData.updateName" required/>
+                        </div>
+                        <div class="p-2">
+                            <label for="newName">Email</label>
+                            <input type="email" class="form-control" id="email"  name="email" [(ngModel)]="this.userService.newUserEmail" required/>
+                        </div>
+                        <div class="p-2">
+                            <label for="newPhone">Telefonszám</label>
+                            <input type="text" class="form-control" id="phone"  name="phone" [(ngModel)]="this.userService.updateUserData.updatePhone" required/>
+                        </div>
+                        <div class="p-2">
+                            <label for="newPassword">Jelszó</label>
+                            <input type="password" class="form-control" id = "newPassword"  name="newPassword" [(ngModel)]="this.userService.updateUserData.updatePassword" required/>
+                        </div>
+                        <div class="p-2">
+                            <label for="newPasswordAgain">Jelszó újra</label>
+                            <input type="password" class="form-control" id="passwordAgain"  name="passwordAgain" [(ngModel)]="this.userService.updateUserData.updatePasswordAgain" required/>
+                        </div>
+                        <div class="p-2">
+                            <label for="password">Saját jelszó</label>
+                            <input required type="password" class="form-control"  name="mypassword" [(ngModel)]="this.userService.updateUserData.password" required/>
+                        </div>
+                        <div class="successUpdate" *ngIf="this.successUpdate === 'OK'">Sikeres hozzáadás</div>
+                        <div *ngFor="let error of errors">
+                            <div class="alert alert-danger">{{error}}</div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" >Küldés</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Mégse</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

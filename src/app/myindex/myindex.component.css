@@ -1,0 +1,15 @@
+#mainText{
+    padding-bottom: 2%;
+    font-size: x-large;
+    font-weight: bolder;
+    text-align: center;
+    color: slategray;
+    margin-right: auto;
+    margin-left: auto;
+}
+#welcomeText{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: justify;
+}
